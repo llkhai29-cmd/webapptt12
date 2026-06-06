@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+    --background: #f4f6f8;
+    --on-surface: #1e293b;
+    --surface-container: #ffffff;
+    --surface-container-high: #e2e8f0;
+    --surface-container-low: #f8fafc;
+    --surface-container-lowest: #ffffff;
+    --surface-dim: #f1f5f9;
+    --surface-variant: #cbd5e1;
+    --outline: #64748b;
+    --primary: #0284c7;
+    --primary-container: #0284c7;
+    --on-primary-container: #ffffff;
+    --secondary-container: #a200df;
+    --on-secondary-container: #ffffff;
+    --secondary: #b600f8;
+    --error: #ef4444;
+    --tertiary-container: #d97706;
+}
+
+.dark {
+    --background: #0d1515;
+    --on-surface: #dce4e4;
+    --surface-container: #192122;
+    --surface-container-high: #232b2c;
+    --surface-container-low: #151d1e;
+    --surface-container-lowest: #080f10;
+    --surface-dim: #0d1515;
+    --surface-variant: #2e3637;
+    --outline: #849495;
+    --primary: #e1fdff;
+    --primary-container: #00f2ff;
+    --on-primary-container: #006a71;
+    --secondary-container: #b600f8;
+    --on-secondary-container: #fff6fc;
+    --secondary: #ebb2ff;
+    --error: #ffb4ab;
+    --tertiary-container: #fed83a;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Glassmorphism panels */
+.glass-panel {
+    background: linear-gradient(135deg, rgba(25, 33, 34, 0.55) 0%, rgba(13, 21, 21, 0.7) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.light .glass-panel,
+html:not(.dark) .glass-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 247, 248, 0.95) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.glass-panel-elevated {
+    background: linear-gradient(135deg, rgba(35, 43, 44, 0.7) 0%, rgba(21, 29, 30, 0.9) 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.light .glass-panel-elevated,
+html:not(.dark) .glass-panel-elevated {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 244, 246, 0.98) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table-row-glass {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+.light .table-row-glass,
+html:not(.dark) .table-row-glass {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.table-row-glass:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+.light .table-row-glass:hover,
+html:not(.dark) .table-row-glass:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Glowing animations for alerts */
+.glow-low { box-shadow: 0 0 8px rgba(0, 242, 255, 0.4); }
+.glow-high { box-shadow: 0 0 12px rgba(254, 216, 58, 0.5); }
+.glow-very-high { box-shadow: 0 0 16px rgba(255, 180, 171, 0.6); animation: pulse-red 2s infinite; }
+
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.4); }
+    50% { box-shadow: 0 0 16px rgba(255, 180, 171, 0.7); }
+    100% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.4); }
+}
+
+/* Drag & drop active state */
+.drag-zone-active {
+    border-color: #0284c7 !important;
+    background: rgba(2, 132, 199, 0.08) !important;
+}
+.dark .drag-zone-active {
+    border-color: #00f2ff !important;
+    background: rgba(0, 242, 255, 0.08) !important;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+.light ::-webkit-scrollbar-thumb,
+html:not(.dark) ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+/* Tab active transitions */
+.tab-pane {
+    display: none;
+    animation: fade-in 0.25s ease-in-out;
+}
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Code block custom font */
+.code-font {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}

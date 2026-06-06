@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quản lý Thầu Thuốc &amp; Vật tư - MedIngest Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&amp;family=Courier+Prime&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#93f1fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#001f23",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-primary-fixed-variant": "#004f57",
+                        "outline": "#6e797b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "tertiary-container": "#717476",
+                        "on-secondary-container": "#586377",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "inverse-surface": "#213145",
+                        "primary-container": "#00808c",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#77d4e1",
+                        "on-primary-container": "#f2fdff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#77d4e1",
+                        "on-background": "#0b1c30",
+                        "surface": "#f8f9ff",
+                        "secondary": "#545f73",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#585c5d",
+                        "outline-variant": "#bdc9ca",
+                        "on-surface-variant": "#3e494a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#00656f",
+                        "secondary-container": "#d5e0f8",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-tint": "#006973",
+                        "on-tertiary-container": "#f9fbfd",
+                        "tertiary-fixed": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "2xl": "48px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "body-md": ["Outfit"],
+                        "body-sm": ["Outfit"],
+                        "headline-sm": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "mono-data": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-data": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f8f9ff; color: #0b1c30; }
+        .glass-card { background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(12px); border: 1px solid #E2E8F0; }
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04); }
+        .data-row:hover { border-left: 2px solid #00808C; background-color: #F1F5F9; }
+    </style>
+</head>
+<body class="font-body-md text-body-md flex bg-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen py-lg px-md gap-sm bg-surface-container-low border-r border-outline-variant fixed left-0 top-0 w-64 z-20">
+<div class="flex items-center gap-md mb-xl px-sm">
+<img alt="Medical Portal Logo" class="w-10 h-10 rounded-lg object-cover" data-alt="A stylized, modern geometric logo for a medical data portal, featuring clean lines in teal and white. The design implies data ingestion and institutional security, set against a pristine, well-lit studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiPgyIsW3gm2_a9si9qNzoZtoQOR5ii3Q980WwelZQf5jrMp98sX4To6aXFNVYutompT0D2xYtuvDMuVT4A3uv7UTmzS-MUrljcebtpMMJN-i34R_9_XSuN9zrvL4xyimbAS3Zo2FfSlfwInWqMlFMgcvIDbYgW3g36ulP2sexC4P6o0-H45bgQmRZjvvuLAvm6akmct3hjkru5CuYeuVr0v0_dPIuGgrta5TEfbmrPAFfzePflBbgulO1rJSFsFxg_4isSoT5LcRK"/>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary">MedIngest</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Institutional Data v4.2</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-md rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors mb-lg flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span> New Ingestion
+        </button>
+<div class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">input</span>
+<span class="font-label-md text-label-md">MAU_01 Ingestion</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-label-md text-label-md">MAU_02 Validation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-secondary-container text-on-secondary-container font-semibold transition-all" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md text-label-md">MAU_03 XML Mapping</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">MAU_04 Cost Analysis</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">MAU_05 Compliance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">MAU_06 Archive</span>
+</a>
+</div>
+<div class="flex flex-col gap-xs mt-auto pt-lg border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-desktop w-full h-16 bg-surface-bright border-b border-outline-variant z-10 sticky top-0">
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 font-body-sm text-body-sm text-on-surface w-64 transition-all" placeholder="Search datasets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer" data-alt="A professional headshot of a healthcare administrator. Soft, even studio lighting highlighting a trustworthy expression. Neutral gray background to ensure focus on the subject, fitting for a corporate medical portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3yxRKZ7SlL8qh-bG5T13wfdg5nddMUafsMfuiLZkKcYnZhvpXvmjvfnKSV6WVPcsanExNgc22zI7fKQiDPuTQQHhhRJ4AexzX6E6bp_WMNPC0jHs6-VxIaW4nCPpXG6OK1yaX7fGwbjg2IpCI8EUyManOt5Sg42tkEDCnALvDou5qYkXPRaIBrmqRpcW72UCZcemSt-RoM3RMTrFtqh23GSIS7vUZoSMLFKSdNlPnb74DFk0abAzlVf3av6xGisImsb5cUyRjDawp"/>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-margin-desktop flex flex-col gap-gutter max-w-[1440px] mx-auto w-full">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Quản lý Thầu Thuốc &amp; Vật tư</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">MAU_03/04 XML Mapping &amp; Cost Analysis Overview</p>
+</div>
+<div class="flex gap-md">
+<button class="px-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">download</span> Export Report
+                    </button>
+</div>
+</div>
+<!-- Summary Cards Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card rounded-xl p-lg ambient-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Tổng giá trị thầu (YTD)</span>
+<span class="material-symbols-outlined text-primary-container bg-primary-container/10 p-sm rounded-lg">account_balance_wallet</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface mb-xs">425.8B</div>
+<div class="flex items-center gap-xs text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12.4% vs last year
+                        </div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-lg ambient-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Cảnh báo chênh lệch giá</span>
+<span class="material-symbols-outlined text-error bg-error-container p-sm rounded-lg">warning</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface mb-xs">14</div>
+<div class="flex items-center gap-xs text-error font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">error</span> Requires immediate review
+                        </div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-lg ambient-shadow flex flex-col justify-between">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Gói thầu sắp hết hạn</span>
+<span class="material-symbols-outlined text-secondary bg-secondary-container p-sm rounded-lg">event_busy</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface mb-xs">08</div>
+<div class="flex items-center gap-xs text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Next 30 days
+                        </div>
+</div>
+</div>
+</div>
+<!-- Main Data Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Data Table -->
+<div class="lg:col-span-2 glass-card rounded-xl ambient-shadow overflow-hidden flex flex-col">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Danh Mục Thuốc &amp; Vật Tư Trúng Thầu</h3>
+<button class="text-primary-container font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="p-md font-semibold">Mã Thuốc/VT</th>
+<th class="p-md font-semibold">Tên Hoạt Chất</th>
+<th class="p-md font-semibold">Đơn Giá Thầu</th>
+<th class="p-md font-semibold">Trạng Thái</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-outline-variant/50 data-row transition-colors cursor-pointer">
+<td class="p-md font-mono-data text-mono-data">M001-A</td>
+<td class="p-md">Paracetamol 500mg</td>
+<td class="p-md font-mono-data text-mono-data text-right pr-xl">320 ₫</td>
+<td class="p-md"><span class="px-2 py-1 rounded-full bg-[#E6F4EA] text-[#137333] font-label-md text-label-md">Active</span></td>
+</tr>
+<tr class="border-b border-outline-variant/50 bg-[#F1F5F9] data-row transition-colors cursor-pointer">
+<td class="p-md font-mono-data text-mono-data">V042-B</td>
+<td class="p-md">Bơm tiêm 5ml</td>
+<td class="p-md font-mono-data text-mono-data text-right pr-xl">1,250 ₫</td>
+<td class="p-md"><span class="px-2 py-1 rounded-full bg-[#E6F4EA] text-[#137333] font-label-md text-label-md">Active</span></td>
+</tr>
+<tr class="border-b border-outline-variant/50 data-row transition-colors cursor-pointer">
+<td class="p-md font-mono-data text-mono-data">M105-C</td>
+<td class="p-md">Amoxicillin 250mg</td>
+<td class="p-md font-mono-data text-mono-data text-right pr-xl">840 ₫</td>
+<td class="p-md"><span class="px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md">Price Alert</span></td>
+</tr>
+<tr class="border-b border-outline-variant/50 bg-[#F1F5F9] data-row transition-colors cursor-pointer">
+<td class="p-md font-mono-data text-mono-data">V011-A</td>
+<td class="p-md">Găng tay y tế</td>
+<td class="p-md font-mono-data text-mono-data text-right pr-xl">4,500 ₫</td>
+<td class="p-md"><span class="px-2 py-1 rounded-full bg-[#FFF0E0] text-[#E67C00] font-label-md text-label-md">Expiring</span></td>
+</tr>
+<tr class="data-row transition-colors cursor-pointer">
+<td class="p-md font-mono-data text-mono-data">M220-D</td>
+<td class="p-md">Omeprazole 20mg</td>
+<td class="p-md font-mono-data text-mono-data text-right pr-xl">1,100 ₫</td>
+<td class="p-md"><span class="px-2 py-1 rounded-full bg-[#E6F4EA] text-[#137333] font-label-md text-label-md">Active</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bar Chart Placeholder -->
+<div class="glass-card rounded-xl ambient-shadow p-lg flex flex-col">
+<div class="border-b border-outline-variant pb-md mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Phân Bổ Thầu Theo Nhóm</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tỷ trọng ngân sách (YTD)</p>
+</div>
+<div class="flex-1 flex items-end justify-between gap-sm pt-md relative">
+<!-- Simulated Bar Chart -->
+<div class="w-1/4 bg-primary-container/20 hover:bg-primary-container transition-colors rounded-t-sm h-[80%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Kháng sinh</div>
+</div>
+<div class="w-1/4 bg-primary-container/40 hover:bg-primary-container transition-colors rounded-t-sm h-[60%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Vật tư TH</div>
+</div>
+<div class="w-1/4 bg-primary-container/60 hover:bg-primary-container transition-colors rounded-t-sm h-[40%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Tim mạch</div>
+</div>
+<div class="w-1/4 bg-primary-container/80 hover:bg-primary-container transition-colors rounded-t-sm h-[90%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Khác</div>
+</div>
+<!-- Grid lines -->
+<div class="absolute top-0 left-0 w-full border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute top-1/4 left-0 w-full border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute top-2/4 left-0 w-full border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute top-3/4 left-0 w-full border-t border-outline-variant/30 border-dashed"></div>
+</div>
+<div class="flex justify-between mt-sm text-on-surface-variant font-label-md text-[10px] uppercase">
+<span>KS</span>
+<span>VTTH</span>
+<span>TM</span>
+<span>Khác</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
