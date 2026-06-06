@@ -236,6 +236,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Bộ phận Chuyên môn</h2>
                         <p class="text-outline mt-1">Quản lý cơ cấu khoa phòng, số bàn khám và số giường bệnh của cơ sở khám chữa bệnh.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 01</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 01.</li>
+                                <li>Các trường <strong>Mã Khoa/Phòng, Tên Khoa/Phòng, Từ Ngày, Mã Cơ Sở KCB</strong> là bắt buộc.</li>
+                                <li>Định dạng ngày phải là <code>yyyyMMdd</code>, ví dụ: <code>20260101</code>.</li>
+                                <li>Điền số giường nếu có, không bắt buộc nhưng nên chính xác.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để thêm dòng vào danh sách, sau đó kiểm tra bảng dữ liệu.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau01', 'list')" class="mau01-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
@@ -349,6 +359,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Nhân lực Khám Chữa Bệnh</h2>
                         <p class="text-outline mt-1">Đăng ký và giám định thông tin chứng chỉ hành nghề, phạm vi hoạt động của nhân viên y tế.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 02</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 02.</li>
+                                <li>Các trường <strong>Họ và Tên, Mã Khoa/Phòng, Giới Tính, Mã Định Danh, Chức Danh NN, Vị Trí, Mã CCHN, Ngày Cấp CCHN, Mã CSKCB</strong> là bắt buộc.</li>
+                                <li>Định dạng ngày phải là <code>yyyyMMdd</code>, ví dụ: <code>20260101</code>.</li>
+                                <li>Nếu không có trường thông tin phụ, chỉ cần đảm bảo các trường bắt buộc được nhập đầy đủ.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để thêm dữ liệu và xem lại bảng.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau02', 'list')" class="mau02-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
@@ -514,6 +534,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Thuốc, Máu, Chế phẩm máu</h2>
                         <p class="text-outline mt-1">Cấu trúc dữ liệu danh mục thầu thuốc, đơn giá BHYT và hạn dùng.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 03</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 03.</li>
+                                <li>Các trường <strong>Mã Thuốc, Tên Hoạt Chất, Tên Thương Mại, Đơn Vị Tính, Đường Dùng, Mã Đường Dùng, Số Đăng Ký, Đơn Giá, Đơn Giá BH, Nhà Thầu</strong> là bắt buộc.</li>
+                                <li>Trường <strong>Đơn Giá BH</strong> nên nhỏ hơn hoặc bằng <strong>Đơn Giá</strong>.</li>
+                                <li>Định dạng ngày phải là <code>yyyyMMdd</code>.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để lưu dòng và kiểm tra bảng dữ liệu.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau03', 'list')" class="mau03-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
@@ -735,6 +765,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Vật tư y tế</h2>
                         <p class="text-outline mt-1">Danh mục vật tư tiêu hao trúng thầu và tỷ lệ BHYT thanh toán tại bệnh viện.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 04</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 04.</li>
+                                <li>Các trường <strong>Mã Vật Tư, Tên Vật Tư, Hãng Sản Xuất, Nước Sản Xuất, Đơn Vị Tính, Đơn Giá, Đơn Giá BH, Tỷ Lệ BHYT</strong> là bắt buộc.</li>
+                                <li>Điền quy cách và nhà thầu nếu có để dễ quản lý sau này.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để lưu dữ liệu vào bảng.</li>
+                                <li>Kiểm tra lại mã vật tư và tên vật tư trước khi lưu.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau04', 'list')" class="mau04-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
@@ -906,6 +946,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Dịch vụ khám chữa bệnh</h2>
                         <p class="text-outline mt-1">Quản lý định mức giá kỹ thuật dịch vụ khám chữa bệnh và danh sách thuốc phụ trợ đi kèm.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 05</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 05.</li>
+                                <li>Các trường <strong>Mã Dịch Vụ, Tên Dịch Vụ, Đơn Giá, Giá Thanh Toán, Mã CSKCB</strong> là bắt buộc.</li>
+                                <li>Giá Thanh Toán phải là số hợp lệ.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để thêm dòng mới vào bảng.</li>
+                                <li>Kiểm tra kỹ thông tin mã dịch vụ trước khi lưu.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau05', 'list')" class="mau05-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
@@ -1045,6 +1095,16 @@
                         </div>
                         <h2 class="text-3xl font-bold text-on-surface">Danh mục Thiết bị y tế</h2>
                         <p class="text-outline mt-1">Khai báo danh sách thiết bị y tế thực hiện dịch vụ kỹ thuật, thời hạn bảo dưỡng và hiệu lực máy.</p>
+                        <div class="glass-panel rounded-xl p-4 border border-white/10 bg-surface-container-high mt-4">
+                            <h3 class="text-base font-semibold text-on-surface mb-2">Hướng dẫn nhập dữ liệu Mẫu 06</h3>
+                            <ul class="list-disc pl-5 text-sm text-outline space-y-1">
+                                <li>Nhập trực tiếp qua tab "Nhập thủ công" hoặc tải file Excel đúng mẫu Mẫu 06.</li>
+                                <li>Các trường <strong>Tên Thiết Bị, Ký Hiệu, Mã Máy, Năm Sản Xuất, Năm Sử Dụng, Từ Ngày, Mã CSKCB</strong> là bắt buộc.</li>
+                                <li>Định dạng ngày phải là <code>yyyyMMdd</code>.</li>
+                                <li>Kiểm tra số máy và mã máy để tránh trùng lặp dữ liệu.</li>
+                                <li>Nhấn "Lưu Bản Ghi" để lưu dòng mới vào danh sách.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchSubTab('mau06', 'list')" class="mau06-tab-btn active px-4 py-2 rounded bg-primary-container text-on-primary-container font-semibold text-sm transition-all">Bảng dữ liệu</button>
