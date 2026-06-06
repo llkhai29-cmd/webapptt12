@@ -1071,24 +1071,36 @@ window.closeSmartCaModal = function() {
 
 window.switchSmartCaTab = function(tab) {
     const signingPanel = document.getElementById('smartca-signing-panel');
+    const usbTokenPanel = document.getElementById('smartca-usb-token-panel');
     const configPanel = document.getElementById('smartca-config-panel');
     const signingBtn = document.getElementById('tab-btn-signing');
+    const usbTokenBtn = document.getElementById('tab-btn-usb-token');
     const configBtn = document.getElementById('tab-btn-config');
 
+    // Hide all panels
+    signingPanel.classList.add('hidden');
+    usbTokenPanel.classList.add('hidden');
+    configPanel.classList.add('hidden');
+    
+    // Reset all button styles
+    [signingBtn, usbTokenBtn, configBtn].forEach(btn => {
+        btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+        btn.classList.add('text-outline');
+    });
+
+    // Show selected tab
     if (tab === 'signing') {
         signingPanel.classList.remove('hidden');
-        configPanel.classList.add('hidden');
         signingBtn.classList.add('bg-primary-container', 'text-on-primary-container');
         signingBtn.classList.remove('text-outline');
-        configBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
-        configBtn.classList.add('text-outline');
-    } else {
-        signingPanel.classList.add('hidden');
+    } else if (tab === 'usb-token') {
+        usbTokenPanel.classList.remove('hidden');
+        usbTokenBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+        usbTokenBtn.classList.remove('text-outline');
+    } else if (tab === 'config') {
         configPanel.classList.remove('hidden');
         configBtn.classList.add('bg-primary-container', 'text-on-primary-container');
         configBtn.classList.remove('text-outline');
-        signingBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
-        signingBtn.classList.add('text-outline');
     }
 };
 
@@ -1266,4 +1278,142 @@ window.simulateSmartCaResult = function(result) {
         }, 1500);
     }
 };
+
+// USB TOKEN DIGITAL SIGNATURE INTEGRATION
+let usbTokenData = {
+    device: null,
+    certificates: [],
+    selectedCert: null
+};
+
+window.detectUsbTokenDevice = function() {
+    const statusEl = document.getElementById('usb-device-status');
+    const certContainer = document.getElementById('usb-token-cert-container');
+    const pinContainer = document.getElementById('usb-token-pin-container');
+    const signBtn = document.getElementById('usb-sign-btn');
+    
+    // Simulate USB token detection
+    statusEl.textContent = 'Quét thiết bị...';
+    statusEl.className = 'text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400';
+    
+    setTimeout(() => {
+        // Simulated detected certificates
+        usbTokenData.certificates = [
+            { id: 1, subject: 'CN=NGUYỄN VĂN AN, MST=0100123456', issuer: 'CA Certificate Authority', validity: '2024-12-31', serial: 'ABC123456' },
+            { id: 2, subject: 'CN=TRẦN THỊ BEE, MST=0100654321', issuer: 'CA Certificate Authority', validity: '2025-06-30', serial: 'XYZ789012' }
+        ];
+        
+        // Update status
+        statusEl.textContent = 'Đã kết nối (' + usbTokenData.certificates.length + ' chứng chỉ)';
+        statusEl.className = 'text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400';
+        
+        // Show certificate selector
+        certContainer.classList.remove('hidden');
+        pinContainer.classList.remove('hidden');
+        
+        // Populate certificate select
+        const certSelect = document.getElementById('usb-token-cert-select');
+        certSelect.innerHTML = '<option value="">-- Chọn chứng chỉ --</option>';
+        usbTokenData.certificates.forEach(cert => {
+            const option = document.createElement('option');
+            option.value = cert.id;
+            option.textContent = cert.subject + ' (HSD: ' + cert.validity + ')';
+            certSelect.appendChild(option);
+        });
+        
+        certSelect.addEventListener('change', function() {
+            if (this.value) {
+                usbTokenData.selectedCert = usbTokenData.certificates.find(c => c.id == this.value);
+                signBtn.disabled = false;
+            } else {
+                usbTokenData.selectedCert = null;
+                signBtn.disabled = true;
+            }
+        });
+        
+        addUsbTokenLog('USB Token thiết bị được phát hiện thành công.', 'system');
+        addUsbTokenLog('Số chứng chỉ có sẵn: ' + usbTokenData.certificates.length, 'system');
+    }, 1500);
+};
+
+window.signWithUsbToken = function() {
+    const pin = document.getElementById('usb-token-pin').value.trim();
+    
+    if (!pin) {
+        alert('Vui lòng nhập PIN USB Token!');
+        return;
+    }
+    
+    if (!usbTokenData.selectedCert) {
+        alert('Vui lòng chọn chứng chỉ để ký!');
+        return;
+    }
+    
+    // Switch to process state
+    document.getElementById('usb-token-setup-state').classList.add('hidden');
+    document.getElementById('usb-token-process-state').classList.remove('hidden');
+    document.getElementById('usb-token-log-console').innerHTML = '';
+    
+    addUsbTokenLog('Khởi tạo ký số USB Token...', 'system');
+    
+    setTimeout(() => {
+        addUsbTokenLog('Xác thực PIN: ' + '*'.repeat(pin.length), 'info');
+    }, 300);
+    
+    setTimeout(() => {
+        addUsbTokenLog('Chứng chỉ: ' + usbTokenData.selectedCert.subject, 'info');
+    }, 600);
+    
+    setTimeout(() => {
+        addUsbTokenLog('Nhà phát hành: ' + usbTokenData.selectedCert.issuer, 'info');
+    }, 900);
+    
+    setTimeout(() => {
+        addUsbTokenLog('Đang ký dữ liệu XML bằng khóa riêng từ USB Token...', 'info');
+    }, 1200);
+    
+    setTimeout(() => {
+        addUsbTokenLog('Chữ ký được tạo thành công!', 'system');
+        addUsbTokenLog('Hash chứng chỉ: 7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D', 'system');
+        
+        completeUsbTokenSigning();
+    }, 2500);
+};
+
+function completeUsbTokenSigning() {
+    // Hide process state, show success state
+    document.getElementById('usb-token-process-state').classList.add('hidden');
+    document.getElementById('usb-token-success-state').classList.remove('hidden');
+    
+    // Display certificate info
+    if (usbTokenData.selectedCert) {
+        document.getElementById('usb-cert-subject').textContent = usbTokenData.selectedCert.subject;
+        document.getElementById('usb-cert-validity').textContent = usbTokenData.selectedCert.validity;
+        document.getElementById('usb-txn-id').textContent = 'TXN_USB_Token_' + generateRandomId();
+    }
+    
+    // Store signature in global state
+    window.signatureHash = 'USB_Token_Signature_' + generateRandomId();
+}
+
+function addUsbTokenLog(message, type = 'info') {
+    const consoleEl = document.getElementById('usb-token-log-console');
+    if (!consoleEl) return;
+    
+    const timestamp = new Date().toLocaleTimeString('vi-VN', { hour12: false });
+    const prefix = {
+        'info': '[INFO ]',
+        'system': '[SYSTEM]',
+        'error': '[ERROR ]'
+    }[type] || '[LOG]';
+    
+    const logLine = document.createElement('div');
+    logLine.textContent = timestamp + ' ' + prefix + ' ' + message;
+    consoleEl.appendChild(logLine);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+}
+
+function generateRandomId() {
+    return Math.random().toString(16).substr(2, 12).toUpperCase();
+}
 
