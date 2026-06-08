@@ -1,0 +1,7 @@
+tunnel: tt12-webapp
+credentials-file: C:\\Users\\Administrator\\.cloudflared\\tt12-webapp.json
+
+ingress:
+  - hostname: tt12-webapp.trycloudflare.com
+    service: http://localhost:8000
+  - service: http_status:404

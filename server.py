@@ -77,5 +77,6 @@ def static_proxy(path):
 
 if __name__ == '__main__':
     init_db()
-    print("Server running at http://127.0.0.1:8000")
-    app.run(port=8000, debug=True)
+    port = int(os.environ.get('PORT', 8000))
+    print(f"Server running at http://0.0.0.0:{port}")
+    app.run(host='0.0.0.0', port=port, debug=False)
