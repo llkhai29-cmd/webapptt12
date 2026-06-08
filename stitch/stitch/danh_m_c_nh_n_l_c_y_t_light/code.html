@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedIngest - Danh mục Nhân lực Y tế (MAU_02)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&amp;family=Courier+Prime&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#93f1fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#001f23",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-primary-fixed-variant": "#004f57",
+                        "outline": "#6e797b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "tertiary-container": "#717476",
+                        "on-secondary-container": "#586377",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "inverse-surface": "#213145",
+                        "primary-container": "#00808c",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#77d4e1",
+                        "on-primary-container": "#f2fdff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#77d4e1",
+                        "on-background": "#0b1c30",
+                        "surface": "#f8f9ff",
+                        "secondary": "#545f73",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#585c5d",
+                        "outline-variant": "#bdc9ca",
+                        "on-surface-variant": "#3e494a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#00656f",
+                        "secondary-container": "#d5e0f8",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-tint": "#006973",
+                        "on-tertiary-container": "#f9fbfd",
+                        "tertiary-fixed": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "2xl": "48px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "body-md": ["Outfit"],
+                        "body-sm": ["Outfit"],
+                        "headline-sm": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "mono-data": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-data": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .table-row-hover:hover {
+            box-shadow: inset 2px 0 0 0 #00808c;
+            background-color: #eff4ff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 bg-surface-container-low dark:bg-surface-container-highest border-r border-outline-variant dark:border-outline py-lg px-md gap-sm z-50">
+<!-- Header -->
+<div class="flex items-center gap-md px-md pb-lg border-b border-outline-variant">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-black text-primary">MedIngest</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Institutional Data v4.2</span>
+</div>
+</div>
+<!-- CTA -->
+<div class="pt-sm pb-md">
+<button class="w-full flex items-center justify-center gap-sm bg-primary-container text-on-primary-container hover:bg-surface-tint transition-colors py-sm px-md rounded-lg font-label-md text-label-md">
+<span class="material-symbols-outlined">add</span>
+                New Ingestion
+            </button>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">input</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_01 Ingestion</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-secondary-container text-on-secondary-container font-semibold transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_02 Validation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_03 XML Mapping</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_04 Cost Analysis</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_05 Compliance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">MAU_06 Archive</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto border-t border-outline-variant pt-sm flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high transition-all cursor-pointer active:translate-x-1" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md font-body-md text-body-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-full ml-0 md:ml-64 bg-background">
+<!-- TopAppBar -->
+<header class="w-full h-16 flex justify-between items-center px-margin-desktop bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline z-40 sticky top-0">
+<div class="flex items-center">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Danh mục Nhân lực Y tế (MAU_02)</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-sm py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all font-body-sm text-body-sm text-on-surface w-64 placeholder-on-surface-variant" placeholder="Tìm kiếm nhanh..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant ml-sm">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1g3qj53Rz22p0mEz_5NirVk52pXNlGjLh5J7WM_WiAJmo_pENfskV_Kr44ZC6_Hec-cEgo5pWhyeq4YzdF1IH0jQ2-cZ3qSozwC1FQ1oJMl7hlAKbJAoWkC1Mg_9UcaG1OFk4OD62g0dG5NQK3TGysdG7KtEzPf6fW6uTZ0wzq_mveRFZn3OFXLixFA8UJWWTtIhAXHkxogWFoqMaPxV0LtfGh6zWqaSknzO4ub_-Kv_DlnevRp9jsMtxyJ0Tvo7Y8qX1MwDitEQT"/>
+</div>
+</div>
+</header>
+<!-- Canvas Body -->
+<div class="flex-1 overflow-y-auto p-margin-desktop">
+<!-- Toolbar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-lg">
+<div class="flex flex-wrap gap-sm">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface font-body-sm text-body-sm rounded-lg pl-sm pr-10 py-sm focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all">
+<option>Khoa/Phòng (Tất cả)</option>
+<option>Khoa Cấp cứu</option>
+<option>Khoa Ngoại Thần kinh</option>
+<option>Khoa Nội Tim mạch</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface font-body-sm text-body-sm rounded-lg pl-sm pr-10 py-sm focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all">
+<option>Chức danh (Tất cả)</option>
+<option>Bác sĩ CKII</option>
+<option>Điều dưỡng trưởng</option>
+<option>Kỹ thuật viên</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface font-body-sm text-body-sm rounded-lg pl-sm pr-10 py-sm focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all">
+<option>Trạng thái XML (Tất cả)</option>
+<option>Hợp lệ</option>
+<option>Lỗi CCHN</option>
+<option>Thiếu thông tin</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex gap-sm w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-xs bg-surface-container-lowest border border-outline text-primary-container hover:bg-surface-container-low transition-colors py-sm px-md rounded-lg font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined">upload_file</span>
+                        Import CSV
+                    </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-xs bg-primary-container text-on-primary-container hover:bg-surface-tint transition-colors py-sm px-md rounded-lg font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined">person_add</span>
+                        Thêm Nhân Sự
+                    </button>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant w-16">STT</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant">Mã NV / Họ tên</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant">Chứng chỉ hành nghề</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant">Khoa/Phòng</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant">Chức danh</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant">Trạng thái XML</th>
+<th class="py-md px-md font-label-md text-label-md text-on-surface-variant text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="bg-surface-container-lowest table-row-hover transition-colors">
+<td class="py-md px-md text-on-surface-variant font-mono-data text-mono-data">1</td>
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Nguyễn Văn An</span>
+<span class="text-on-surface-variant font-mono-data text-xs">NV-2023-001</span>
+</div>
+</td>
+<td class="py-md px-md font-mono-data text-mono-data text-on-surface">CCHN-001234/BYT-CCHN</td>
+<td class="py-md px-md text-on-surface">Khoa Ngoại Thần kinh</td>
+<td class="py-md px-md text-on-surface">Bác sĩ CKII</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                                        Hợp lệ
+                                    </span>
+</td>
+<td class="py-md px-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-[#F1F5F9] table-row-hover transition-colors">
+<td class="py-md px-md text-on-surface-variant font-mono-data text-mono-data">2</td>
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Trần Thị Bích</span>
+<span class="text-on-surface-variant font-mono-data text-xs">NV-2023-045</span>
+</div>
+</td>
+<td class="py-md px-md font-mono-data text-mono-data text-on-surface">CCHN-005678/HCM-CCHN</td>
+<td class="py-md px-md text-on-surface">Khoa Nội Tim mạch</td>
+<td class="py-md px-md text-on-surface">Bác sĩ CKI</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Lỗi Format
+                                    </span>
+</td>
+<td class="py-md px-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-lowest table-row-hover transition-colors">
+<td class="py-md px-md text-on-surface-variant font-mono-data text-mono-data">3</td>
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Lê Hoàng Nam</span>
+<span class="text-on-surface-variant font-mono-data text-xs">NV-2021-112</span>
+</div>
+</td>
+<td class="py-md px-md font-mono-data text-mono-data text-on-surface">CCHN-009988/BYT-CCHN</td>
+<td class="py-md px-md text-on-surface">Khoa Cấp cứu</td>
+<td class="py-md px-md text-on-surface">Điều dưỡng trưởng</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                                        Hợp lệ
+                                    </span>
+</td>
+<td class="py-md px-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-[#F1F5F9] table-row-hover transition-colors">
+<td class="py-md px-md text-on-surface-variant font-mono-data text-mono-data">4</td>
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Phạm Quang Đạt</span>
+<span class="text-on-surface-variant font-mono-data text-xs">NV-2024-005</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant italic text-xs">Đang chờ cấp</td>
+<td class="py-md px-md text-on-surface">Phòng Chẩn đoán hình ảnh</td>
+<td class="py-md px-md text-on-surface">Kỹ thuật viên</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-[#FFF3CD] text-[#856404] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FFC107]"></span>
+                                        Thiếu CCHN
+                                    </span>
+</td>
+<td class="py-md px-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-surface-container-lowest table-row-hover transition-colors">
+<td class="py-md px-md text-on-surface-variant font-mono-data text-mono-data">5</td>
+<td class="py-md px-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Đinh Tuấn Anh</span>
+<span class="text-on-surface-variant font-mono-data text-xs">NV-2019-088</span>
+</div>
+</td>
+<td class="py-md px-md font-mono-data text-mono-data text-on-surface">CCHN-002233/HN-CCHN</td>
+<td class="py-md px-md text-on-surface">Khoa Nội Tim mạch</td>
+<td class="py-md px-md text-on-surface">Bác sĩ CKI</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                                        Hợp lệ
+                                    </span>
+</td>
+<td class="py-md px-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="border-t border-outline-variant bg-surface-container p-sm flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm pl-sm">Hiển thị 1-5 trên 124 bản ghi</span>
+<div class="flex items-center gap-sm pr-sm">
+<button class="w-8 h-8 rounded border border-outline-variant bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-primary-container bg-primary-container flex items-center justify-center text-on-primary-container font-label-md text-label-md">1</button>
+<button class="w-8 h-8 rounded border border-outline-variant bg-surface-container-lowest flex items-center justify-center text-on-surface hover:bg-surface-container-low font-label-md text-label-md">2</button>
+<button class="w-8 h-8 rounded border border-outline-variant bg-surface-container-lowest flex items-center justify-center text-on-surface hover:bg-surface-container-low font-label-md text-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded border border-outline-variant bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

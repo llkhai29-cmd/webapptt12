@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IngestMed AI - Dashboard Tổng quan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#b600f8",
+                        "surface-variant": "#2e3637",
+                        "on-secondary-fixed": "#320047",
+                        "on-tertiary-fixed": "#221b00",
+                        "surface-dim": "#0d1515",
+                        "surface-container-lowest": "#080f10",
+                        "inverse-on-surface": "#2a3232",
+                        "on-surface": "#dce4e4",
+                        "inverse-primary": "#00696f",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#004f54",
+                        "secondary-fixed": "#f8d8ff",
+                        "on-background": "#dce4e4",
+                        "secondary": "#ebb2ff",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#725e00",
+                        "primary": "#e1fdff",
+                        "surface-container-high": "#232b2c",
+                        "tertiary": "#fff6e4",
+                        "outline": "#849495",
+                        "on-primary-fixed": "#002022",
+                        "surface-container-low": "#151d1e",
+                        "tertiary-fixed-dim": "#e8c423",
+                        "on-primary": "#00363a",
+                        "primary-container": "#00f2ff",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "tertiary-fixed": "#ffe173",
+                        "on-tertiary": "#3b2f00",
+                        "primary-fixed-dim": "#00dbe7",
+                        "surface-container-highest": "#2e3637",
+                        "background": "#0d1515",
+                        "surface-tint": "#00dbe7",
+                        "on-surface-variant": "#b9cacb",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3a494b",
+                        "primary-fixed": "#74f5ff",
+                        "on-secondary": "#520072",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#006a71",
+                        "surface": "#0d1515",
+                        "surface-bright": "#333b3b",
+                        "surface-container": "#192122",
+                        "inverse-surface": "#dce4e4",
+                        "on-secondary-container": "#fff6fc",
+                        "secondary-fixed-dim": "#ebb2ff",
+                        "tertiary-container": "#fed83a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Outfit"],
+                        "body-sm": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-xl": ["Outfit"],
+                        "label-caps": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0d1515;
+            color: #dce4e4;
+        }
+        
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(25, 33, 34, 0.6) 0%, rgba(13, 21, 21, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        
+        .glass-panel-elevated {
+            background: linear-gradient(135deg, rgba(35, 43, 44, 0.7) 0%, rgba(21, 29, 30, 0.9) 100%);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+        }
+
+        .glow-low { box-shadow: 0 0 8px rgba(0, 242, 255, 0.5); }
+        .glow-high { box-shadow: 0 0 12px rgba(254, 216, 58, 0.6); }
+        .glow-very-high { box-shadow: 0 0 16px rgba(255, 180, 171, 0.7); animation: pulse-red 2s infinite; }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.5); }
+            50% { box-shadow: 0 0 16px rgba(255, 180, 171, 0.8); }
+            100% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.5); }
+        }
+
+        .drag-zone-active {
+            backdrop-filter: blur(30px);
+            background: rgba(0, 242, 255, 0.05);
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.2);
+            border-color: #00f2ff;
+        }
+
+        /* Gradient Text */
+        .text-gradient-cyan {
+            background: linear-gradient(90deg, #00f2ff, #00dbe7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-dim/80 backdrop-blur-xl h-screen w-72 fixed left-0 top-0 border-r border-white/10 shadow-xl flex flex-col h-full py-md px-sm z-40 hidden md:flex">
+<div class="flex items-center gap-sm mb-lg px-base">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-container/30">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">medical_information</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary-container text-[20px] leading-tight">Compliance Portal</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Circular 12/2026/TT-BTC</p>
+</div>
+</div>
+<button class="mb-md mx-base bg-primary text-on-primary py-sm px-md rounded-DEFAULT font-body-md text-body-md font-bold flex items-center justify-center gap-xs hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">add</span>
+            XML Configuration
+        </button>
+<ul class="flex-1 overflow-y-auto space-y-xs px-base">
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT bg-primary-container/10 text-primary-container border-l-4 border-primary-container transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-body-md text-body-md">Departments (MAU_01)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Medical Staff (MAU_02)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-body-md text-body-md">Medicines (MAU_03)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-body-md text-body-md">Supplies (MAU_04)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">vaccines</span>
+<span class="font-body-md text-body-md">Services (MAU_05)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">medical_information</span>
+<span class="font-body-md text-body-md">Devices (MAU_06)</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-body-md text-body-md">Digital Signature</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-md border-t border-white/10 px-base space-y-xs">
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">System Status</span>
+</a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col md:ml-72 relative z-0 h-screen overflow-y-auto bg-surface">
+<!-- TopAppBar -->
+<header class="bg-surface-container/60 backdrop-blur-md flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-50 border-b border-white/10 shadow-[0_0_10px_rgba(0,242,255,0.1)]">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface-variant hover:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold text-primary-container tracking-tight">IngestMed AI</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-high border-b border-outline-variant rounded-t-DEFAULT py-sm pl-xl pr-sm text-on-surface focus:border-primary-container focus:ring-0 focus:outline-none transition-colors w-64 placeholder:text-on-surface-variant/50" placeholder="Search records..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container ml-sm overflow-hidden border border-white/20">
+<!-- Profile placeholder -->
+<div class="w-full h-full flex items-center justify-center text-on-secondary-container font-bold text-sm">A</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-margin-mobile md:p-margin-desktop space-y-md">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-sm mb-lg">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Dashboard Tổng quan</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">Data ingestion and compliance monitoring for Circular 12/2026/TT-BTC</p>
+</div>
+<div class="flex gap-sm">
+<button class="border border-primary-container text-primary-container px-md py-sm rounded-DEFAULT font-body-md text-body-md hover:bg-primary-container/10 transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+<button class="bg-secondary-container text-on-secondary-container px-md py-sm rounded-DEFAULT font-body-md text-body-md hover:opacity-90 transition-opacity flex items-center gap-xs shadow-[0_0_15px_rgba(182,0,248,0.3)]">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+                        Run Analysis
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- Main Drag & Drop Zone (Spans 8 cols) -->
+<div class="md:col-span-8 glass-panel rounded-xl p-lg flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed border-primary-container/40 relative group transition-all duration-300 hover:border-primary-container" id="drop-zone">
+<div class="absolute inset-0 bg-primary-container/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-20 h-20 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center mb-md z-10 group-hover:scale-110 transition-transform duration-300 glow-low">
+<span class="material-symbols-outlined text-4xl text-primary-container">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface z-10 mb-xs">Drop XML/Excel files here</h3>
+<p class="font-body-md text-body-md text-on-surface-variant z-10 text-center max-w-md">Supported formats: .xml, .xls, .xlsx. Maximum file size 50MB per batch for MAU_01 to MAU_06.</p>
+<button class="mt-lg z-10 bg-primary text-on-primary px-lg py-sm rounded-DEFAULT font-bold hover:bg-primary-fixed transition-colors">
+                        Browse Files
+                    </button>
+</div>
+<!-- Validation Progress Summary (Spans 4 cols) -->
+<div class="md:col-span-4 glass-panel rounded-xl p-md flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Validation Pipeline</h3>
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+</div>
+<div class="space-y-md">
+<!-- Progress Bar 1 -->
+<div>
+<div class="flex justify-between font-label-caps text-label-caps mb-xs">
+<span class="text-on-surface-variant">Schema Validation</span>
+<span class="text-primary-container">100%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-full rounded-full glow-low"></div>
+</div>
+</div>
+<!-- Progress Bar 2 -->
+<div>
+<div class="flex justify-between font-label-caps text-label-caps mb-xs">
+<span class="text-on-surface-variant">Cost Threshold Checking</span>
+<span class="text-tertiary-container">78%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-[78%] rounded-full glow-high"></div>
+</div>
+</div>
+<!-- Progress Bar 3 -->
+<div>
+<div class="flex justify-between font-label-caps text-label-caps mb-xs">
+<span class="text-on-surface-variant">Signature Verification</span>
+<span class="text-surface-variant">Pending</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-surface-variant w-0 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-white/10">
+<div class="flex items-center gap-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] animate-spin">sync</span>
+                            Processing batch #B-8992...
+                        </div>
+</div>
+</div>
+<!-- Alert Cards Row -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-md mt-sm">
+<!-- Alert: Low (Tăng thấp) -->
+<div class="glass-panel rounded-xl p-md border-l-4 border-primary-container flex flex-col relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-primary-container glow-low rounded-full">trending_up</span>
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-surface">Tăng thấp (Low)</h4>
+</div>
+<div class="mt-auto">
+<div class="text-3xl font-bold text-on-surface mb-xs">42 <span class="text-sm font-normal text-on-surface-variant">records</span></div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim bg-primary-container/10 inline-block px-sm py-[2px] rounded-sm">+1.2% avg cost increase</p>
+</div>
+</div>
+<!-- Alert: High (Tăng cao) -->
+<div class="glass-panel rounded-xl p-md border-l-4 border-tertiary-container flex flex-col relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-tertiary-container/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-tertiary-container glow-high rounded-full">warning</span>
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-surface">Tăng cao (High)</h4>
+</div>
+<div class="mt-auto">
+<div class="text-3xl font-bold text-on-surface mb-xs">18 <span class="text-sm font-normal text-on-surface-variant">records</span></div>
+<p class="font-body-sm text-body-sm text-tertiary-container bg-tertiary-container/10 inline-block px-sm py-[2px] rounded-sm">+5.4% avg cost increase</p>
+</div>
+</div>
+<!-- Alert: Very High (Tăng rất cao) -->
+<div class="glass-panel rounded-xl p-md border-l-4 border-error flex flex-col relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-error/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-error glow-very-high rounded-full">dangerous</span>
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-surface">Tăng rất cao (Very High)</h4>
+</div>
+<div class="mt-auto">
+<div class="text-3xl font-bold text-on-surface mb-xs">3 <span class="text-sm font-normal text-on-surface-variant">records</span></div>
+<p class="font-body-sm text-body-sm text-error bg-error/10 inline-block px-sm py-[2px] rounded-sm">+12.8% avg cost increase</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple drag and drop visual feedback
+        const dropZone = document.getElementById('drop-zone');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropZone.classList.add('drag-zone-active');
+        }
+
+        function unhighlight(e) {
+            dropZone.classList.remove('drag-zone-active');
+        }
+    </script>
+</body></html>

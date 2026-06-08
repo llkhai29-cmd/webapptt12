@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quản lý Thầu Thuốc &amp; Vật tư - IngestMed AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#b600f8",
+                        "surface-variant": "#2e3637",
+                        "on-secondary-fixed": "#320047",
+                        "on-tertiary-fixed": "#221b00",
+                        "surface-dim": "#0d1515",
+                        "surface-container-lowest": "#080f10",
+                        "inverse-on-surface": "#2a3232",
+                        "on-surface": "#dce4e4",
+                        "inverse-primary": "#00696f",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#004f54",
+                        "secondary-fixed": "#f8d8ff",
+                        "on-background": "#dce4e4",
+                        "secondary": "#ebb2ff",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#725e00",
+                        "primary": "#e1fdff",
+                        "surface-container-high": "#232b2c",
+                        "tertiary": "#fff6e4",
+                        "outline": "#849495",
+                        "on-primary-fixed": "#002022",
+                        "surface-container-low": "#151d1e",
+                        "tertiary-fixed-dim": "#e8c423",
+                        "on-primary": "#00363a",
+                        "primary-container": "#00f2ff",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "tertiary-fixed": "#ffe173",
+                        "on-tertiary": "#3b2f00",
+                        "primary-fixed-dim": "#00dbe7",
+                        "surface-container-highest": "#2e3637",
+                        "background": "#0d1515",
+                        "surface-tint": "#00dbe7",
+                        "on-surface-variant": "#b9cacb",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3a494b",
+                        "primary-fixed": "#74f5ff",
+                        "on-secondary": "#520072",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#006a71",
+                        "surface": "#0d1515",
+                        "surface-bright": "#333b3b",
+                        "surface-container": "#192122",
+                        "inverse-surface": "#dce4e4",
+                        "on-secondary-container": "#fff6fc",
+                        "secondary-fixed-dim": "#ebb2ff",
+                        "tertiary-container": "#fed83a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Outfit"],
+                        "body-sm": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-xl": ["Outfit"],
+                        "label-caps": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for data tables */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(13, 21, 21, 0.5); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 255, 0.2); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 242, 255, 0.4); 
+        }
+
+        /* Glass Panel Base */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(35, 43, 44, 0.6) 0%, rgba(21, 29, 30, 0.4) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Ambient Glow Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(182, 0, 248, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Status Glows */
+        .glow-warning {
+            box-shadow: 0 0 8px rgba(254, 216, 58, 0.5); /* tertiary-container */
+        }
+        .glow-error {
+            box-shadow: 0 0 12px rgba(255, 180, 171, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.3); }
+            50% { box-shadow: 0 0 16px rgba(255, 180, 171, 0.6); }
+            100% { box-shadow: 0 0 8px rgba(255, 180, 171, 0.3); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface-container/60 backdrop-blur-md flex justify-between items-center px-margin-desktop h-16 w-full sticky top-0 z-50 border-b border-white/10 shadow-[0_0_10px_rgba(0,242,255,0.1)] hidden md:flex">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container text-2xl">vital_signs</span>
+<span class="font-headline-md text-headline-md font-bold text-primary-container tracking-tight">IngestMed AI</span>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-dim border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all w-64 placeholder:text-on-surface-variant/50" placeholder="Search parameters..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<button aria-label="Notifications" class="p-2 rounded-full text-on-surface-variant hover:bg-white/5 transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="Settings" class="p-2 rounded-full text-on-surface-variant hover:bg-white/5 transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button aria-label="Help" class="p-2 rounded-full text-on-surface-variant hover:bg-white/5 transition-colors active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Profile -->
+<div class="h-8 w-8 rounded-full border border-primary-container/30 overflow-hidden ml-2 cursor-pointer hover:border-primary-container transition-colors">
+<img alt="Administrator profile" class="w-full h-full object-cover" data-alt="A close up, high resolution portrait of a medical professional in a pristine, futuristic white and neon cyan environment. The lighting is crisp and cool, casting soft, flattering shadows. The overall aesthetic implies advanced healthcare technology and serious administrative focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhQT-cJhfQOam4k8G3sXFXeetztoIONpx5ykZCFmr7jhG4lE6e9x4df8gt2YBWPolr099gLUYvhOxMxLxzR0_YqvGhlb4c3OG2HlaUl61swV6LpTEsP6IazAezFo4sAl7UqcvSsc4EigUYW-j5vi7Me9HyQpkD81lZatuCFuvKR0YoBOPCxPLWGr0Brzuo8n06m17U0SEr9yyMo-KLQzATBepta55ub48Yu7qfNkMkfY1G5vRn-U197DEDg6TTYWbjsur--QPurtbW"/>
+</div>
+</div>
+</header>
+<!-- Mobile Header (Visible only on small screens) -->
+<header class="bg-surface-container/60 backdrop-blur-md flex justify-between items-center px-margin-mobile h-14 w-full sticky top-0 z-50 md:hidden border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">vital_signs</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-container tracking-tight">IngestMed</span>
+</div>
+<button class="p-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="flex min-h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<nav class="bg-surface-dim/80 backdrop-blur-xl h-[calc(100vh-64px)] w-72 fixed left-0 top-16 border-r border-white/10 shadow-xl flex-col py-md px-sm hidden md:flex z-40 transition-all duration-200 ease-in-out">
+<div class="mb-lg px-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary-container">Compliance Portal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Circular 12/2026/TT-BTC</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-body-md text-body-md">Departments (MAU_01)</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Medical Staff (MAU_02)</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-sm py-2 rounded-md bg-primary-container/10 text-primary-container border-l-4 border-primary-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medication</span>
+<span class="font-body-md text-body-md font-semibold">Medicines (MAU_03)</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-body-md text-body-md">Supplies (MAU_04)</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">vaccines</span>
+<span class="font-body-md text-body-md">Services (MAU_05)</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">medical_information</span>
+<span class="font-body-md text-body-md">Devices (MAU_06)</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-body-md text-body-md">Digital Signature</span>
+</a>
+</div>
+<div class="mt-auto pt-md border-t border-white/10 flex flex-col gap-2">
+<button class="w-full bg-surface-variant/50 border border-primary-container/30 text-primary-fixed hover:bg-primary-container/10 py-2 rounded-md font-body-sm text-body-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">settings_ethernet</span>
+                    XML Configuration
+                </button>
+<div class="flex flex-col gap-1 mt-2">
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm text-body-sm">System Status</span>
+</a>
+<a class="flex items-center gap-3 px-sm py-2 rounded-md text-on-surface-variant hover:text-error hover:bg-error/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Logout</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-72 p-margin-mobile md:p-margin-desktop w-full overflow-x-hidden">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-lg">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">Quản lý Thầu Thuốc &amp; Vật tư</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Procurement &amp; Tender Compliance Data Monitoring (MAU_03/04)</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="glass-panel text-on-surface hover:text-primary-container hover:border-primary-container/50 px-4 py-2 rounded-md font-body-sm text-body-sm transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Lọc Dữ Liệu
+                    </button>
+<button class="bg-primary-container text-on-primary-container hover:bg-primary-fixed px-4 py-2 rounded-md font-body-sm text-body-sm font-semibold transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(0,242,255,0.3)]">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Nhập Gói Thầu Mới
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- KPI Widgets (Top Row) -->
+<div class="md:col-span-4 glass-panel rounded-xl p-md flex flex-col justify-between hover:border-primary-container/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Tổng Giá Trị Thầu (YTD)</span>
+<span class="material-symbols-outlined text-primary-fixed-dim">account_balance_wallet</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-primary-container mb-1">452.8B VNĐ</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm text-error">trending_up</span>
+<span>+12.4% so với kỳ trước</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 glass-panel rounded-xl p-md flex flex-col justify-between hover:border-primary-container/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Cảnh Báo Chênh Lệch Giá</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-error mb-1">14 Khoản</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm text-tertiary-container">info</span>
+<span>Cần giải trình theo TT 12/2026</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 glass-panel rounded-xl p-md flex flex-col justify-between hover:border-primary-container/30 transition-colors relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary-container/5 z-0"></div>
+<div class="relative z-10 flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Gói Thầu Sắp Hết Hạn</span>
+<span class="material-symbols-outlined text-secondary-fixed">event_busy</span>
+</div>
+<div class="relative z-10">
+<div class="font-headline-lg text-headline-lg text-secondary-fixed mb-1">03 Gói</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Hết hạn trong vòng 30 ngày</span>
+</div>
+</div>
+</div>
+<!-- Main Data Table Area -->
+<div class="md:col-span-12 glass-panel rounded-xl flex flex-col mt-4">
+<div class="p-md border-b border-white/10 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Danh Mục Thuốc &amp; Vật Tư Trúng Thầu</h3>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-md py-1.5 pl-9 pr-3 text-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:border-b-primary-container transition-all w-48 bg-transparent" placeholder="Tìm tên thuốc, số HĐ..." type="text"/>
+</div>
+<button class="bg-surface-variant/50 border border-outline-variant text-on-surface hover:bg-surface-variant px-3 py-1.5 rounded-md font-body-sm text-body-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span>
+                                Export XML
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10 bg-surface-container/30">
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold">Mã Thuốc/VT</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold">Tên Hoạt Chất / Vật Tư</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold">ĐVT</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold text-right">Đơn Giá Thầu (VNĐ)</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold text-center">Gói Thầu</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold text-center">Trạng Thái</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-semibold text-right">Hành Động</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<!-- Row 1: Normal -->
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="p-4 text-on-surface font-mono">MD-4921</td>
+<td class="p-4">
+<div class="font-semibold text-primary-fixed-dim">Paracetamol 500mg</div>
+<div class="text-on-surface-variant text-xs mt-0.5">Viên nén bao phim - NSX: Hậu Giang</div>
+</td>
+<td class="p-4 text-on-surface-variant">Viên</td>
+<td class="p-4 text-right font-mono text-on-surface">450</td>
+<td class="p-4 text-center">
+<span class="inline-block px-2 py-1 rounded bg-surface-variant text-on-surface text-xs border border-white/10">GT-2023-01</span>
+</td>
+<td class="p-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,242,255,0.8)]"></div>
+                                            Hợp lệ
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<!-- Row 2: Error/Warning (Price Discrepancy) -->
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors bg-error/5 group">
+<td class="p-4 text-on-surface font-mono">MD-8832</td>
+<td class="p-4">
+<div class="font-semibold text-error">Cefuroxim 250mg</div>
+<div class="text-on-surface-variant text-xs mt-0.5">Thuốc bột pha tiêm - NSX: Vimedimex</div>
+</td>
+<td class="p-4 text-on-surface-variant">Lọ</td>
+<td class="p-4 text-right font-mono text-error font-bold flex items-center justify-end gap-2">
+<span class="material-symbols-outlined text-sm text-error glow-error rounded-full">warning</span>
+                                        12,500
+                                    </td>
+<td class="p-4 text-center">
+<span class="inline-block px-2 py-1 rounded bg-surface-variant text-on-surface text-xs border border-white/10">GT-2023-04</span>
+</td>
+<td class="p-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-error/10 border border-error/30 text-error text-xs">
+                                            Vượt trần BHYT
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-sm">visibility</span></button>
+</td>
+</tr>
+<!-- Row 3: Warning -->
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="p-4 text-on-surface font-mono">VT-1094</td>
+<td class="p-4">
+<div class="font-semibold text-tertiary-container">Bơm tiêm nhựa 5ml</div>
+<div class="text-on-surface-variant text-xs mt-0.5">Vật tư y tế tiêu hao</div>
+</td>
+<td class="p-4 text-on-surface-variant">Cái</td>
+<td class="p-4 text-right font-mono text-on-surface">1,200</td>
+<td class="p-4 text-center">
+<span class="inline-block px-2 py-1 rounded bg-surface-variant text-on-surface text-xs border border-tertiary-container/30 glow-warning">GT-2022-11</span>
+</td>
+<td class="p-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary-container text-xs">
+                                            Sắp hết hạn
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-tertiary-container transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<!-- Row 4: Normal -->
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+<td class="p-4 text-on-surface font-mono">MD-3312</td>
+<td class="p-4">
+<div class="font-semibold text-primary-fixed-dim">Omeprazole 20mg</div>
+<div class="text-on-surface-variant text-xs mt-0.5">Viên nang cứng - NSX: Domesco</div>
+</td>
+<td class="p-4 text-on-surface-variant">Viên</td>
+<td class="p-4 text-right font-mono text-on-surface">850</td>
+<td class="p-4 text-center">
+<span class="inline-block px-2 py-1 rounded bg-surface-variant text-on-surface text-xs border border-white/10">GT-2023-01</span>
+</td>
+<td class="p-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,242,255,0.8)]"></div>
+                                            Hợp lệ
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-white/10 flex justify-between items-center text-on-surface-variant text-sm">
+<div>Hiển thị 1-4 trên tổng số 1,204 bản ghi</div>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-white/10 disabled:opacity-50"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-7 h-7 rounded bg-primary-container/20 text-primary-container border border-primary-container/50">1</button>
+<button class="w-7 h-7 rounded hover:bg-white/10 text-on-surface">2</button>
+<button class="w-7 h-7 rounded hover:bg-white/10 text-on-surface">3</button>
+<span class="px-1">...</span>
+<button class="w-7 h-7 rounded hover:bg-white/10 text-on-surface">45</button>
+<button class="p-1 rounded hover:bg-white/10"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Secondary Analysis Area (Bottom) -->
+<div class="md:col-span-6 glass-panel rounded-xl p-md mt-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Phân Bổ Thầu Theo Nhóm</h3>
+<div class="h-48 flex items-end justify-around gap-2 pb-2 border-b border-white/10 relative">
+<!-- Placeholder for a chart -->
+<div class="w-1/5 bg-primary-container/40 hover:bg-primary-container/60 transition-colors h-[80%] rounded-t-md relative group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-mono text-primary-container opacity-0 group-hover:opacity-100 transition-opacity">80%</div>
+</div>
+<div class="w-1/5 bg-secondary-container/40 hover:bg-secondary-container/60 transition-colors h-[40%] rounded-t-md relative group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-mono text-secondary-fixed opacity-0 group-hover:opacity-100 transition-opacity">40%</div>
+</div>
+<div class="w-1/5 bg-tertiary-container/40 hover:bg-tertiary-container/60 transition-colors h-[60%] rounded-t-md relative group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-mono text-tertiary-container opacity-0 group-hover:opacity-100 transition-opacity">60%</div>
+</div>
+<div class="w-1/5 bg-error/40 hover:bg-error/60 transition-colors h-[20%] rounded-t-md relative group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-mono text-error opacity-0 group-hover:opacity-100 transition-opacity">20%</div>
+</div>
+</div>
+<div class="flex justify-around mt-2 text-xs text-on-surface-variant font-label-caps">
+<span>Kháng sinh</span>
+<span>Tim mạch</span>
+<span>Vật tư TH</span>
+<span>Khác</span>
+</div>
+</div>
+<!-- Action / Drag Drop Zone -->
+<div class="md:col-span-6 glass-panel rounded-xl p-md mt-4 flex flex-col justify-center items-center border-2 border-dashed border-primary-container/30 hover:border-primary-container hover:bg-primary-container/5 transition-all cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4 group-hover:bg-primary-container/20 group-hover:shadow-[0_0_15px_rgba(0,242,255,0.4)] transition-all">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary-container">cloud_upload</span>
+</div>
+<h4 class="font-headline-sm text-on-surface mb-1 group-hover:text-primary-container transition-colors">Tải Lên File Kết Quả Thầu</h4>
+<p class="text-body-sm text-on-surface-variant text-center max-w-xs">Kéo thả file Excel hoặc XML theo định dạng chuẩn của Bộ Y Tế để nhập liệu tự động.</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>
