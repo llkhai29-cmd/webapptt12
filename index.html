@@ -426,11 +426,30 @@
                         </div>
                         <div>
                             <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Chức Danh Nghề Nghiệp *</label>
-                            <input name="CHUCDANH_NN" required placeholder="Ví dụ: V.08.01.01" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none"/>
+                            <select name="CHUCDANH_NN" required class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none">
+                                <option value="">-- Chọn Chức Danh --</option>
+                                <option value="1">1: Bác sỹ</option>
+                                <option value="2">2: Y sỹ</option>
+                                <option value="3">3: Điều dưỡng</option>
+                                <option value="4">4: Hộ sinh</option>
+                                <option value="5">5: Kỹ thuật y</option>
+                                <option value="6">6: Cử nhân tâm lý lâm sàng</option>
+                                <option value="7">7: Lương y</option>
+                                <option value="8">8: Dược sỹ</option>
+                                <option value="9">9: Người tham gia khám bệnh, chữa bệnh không cần cấp giấy phép hành nghề</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Vị Trí Công Tác *</label>
-                            <input name="VI_TRI" required placeholder="Ví dụ: Bác sĩ điều trị" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none"/>
+                            <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Vị Trí Công Tác</label>
+                            <select name="VI_TRI" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none">
+                                <option value="">-- Chọn Vị Trí --</option>
+                                <option value="1">1: Người chịu trách nhiệm chuyên môn</option>
+                                <option value="2">2: Trưởng khoa/Trưởng đơn nguyên/Người phụ trách phòng khám liên chuyên khoa</option>
+                                <option value="3">3: Người chịu trách nhiệm chuyên môn kiêm Trưởng khoa</option>
+                                <option value="4">4: Người đứng đầu cơ sở KCB hoặc được ủy quyền ký giấy chuyển tuyến, giấy ra viện, giấy hẹn khám lại</option>
+                                <option value="5">5: Người hành nghề được giao phụ trách khoa (khi không có Trưởng khoa)</option>
+                                <option value="6">6: Người được ủy quyền chịu trách nhiệm chuyên môn kỹ thuật theo khoản 11 Điều 27 Nghị định 96/2023/NĐ-CP</option>
+                            </select>
                         </div>
                         <div>
                             <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Mã CCHN *</label>
@@ -446,7 +465,103 @@
                         </div>
                         <div>
                             <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Phạm Vi Chuyên Môn *</label>
-                            <input name="PHAMVI_CM" required placeholder="Khám bệnh, chữa bệnh nội khoa" class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none"/>
+                            <select name="PHAMVI_CM" required class="w-full bg-surface-container border border-white/10 rounded p-2 text-on-surface focus:border-primary-container focus:outline-none">
+                                <option value="">-- Chọn Phạm Vi Chuyên Môn --</option>
+                                <option value="101">101 - Bác sỹ chuyên khoa Hồi sức cấp cứu</option>
+                                <option value="102">102 - Bác sỹ chuyên khoa Nội khoa</option>
+                                <option value="102.04">102.04 - Bác sỹ chuyên khoa Nội Tim mạch</option>
+                                <option value="102.05">102.05 - Bác sỹ chuyên khoa Nội tiêu hóa</option>
+                                <option value="102.06">102.06 - Bác sỹ chuyên khoa Nội cơ - xương - khớp</option>
+                                <option value="102.07">102.07 - Bác sỹ chuyên khoa Nội thận - tiết niệu</option>
+                                <option value="102.50">102.50 - Bác sỹ chuyên khoa Nội Hô hấp</option>
+                                <option value="102.09">102.09 - Bác sỹ chuyên khoa Dị ứng</option>
+                                <option value="102.10">102.10 - Bác sỹ chuyên khoa Huyết học</option>
+                                <option value="102.11">102.11 - Bác sỹ chuyên khoa Truyền nhiễm</option>
+                                <option value="102.14">102.14 - Bác sỹ chuyên khoa Thần kinh</option>
+                                <option value="103">103 - Bác sỹ chuyên khoa Nhi khoa</option>
+                                <option value="104">104 - Bác sỹ chuyên khoa Ngoại lao</option>
+                                <option value="105">105 - Bác sỹ chuyên khoa Da liễu</option>
+                                <option value="106">106 - Bác sỹ chuyên khoa Tâm thần</option>
+                                <option value="107">107 - Bác sỹ chuyên khoa Nội tiết</option>
+                                <option value="108">108 - Bác sỹ Y học cổ truyền</option>
+                                <option value="109">109 - Bác sỹ chuyên khoa Gây mê hồi sức</option>
+                                <option value="110">110 - Bác sỹ chuyên khoa Ngoại khoa</option>
+                                <option value="110.20">110.20 - Bác sỹ chuyên khoa Ngoại thần kinh</option>
+                                <option value="110.21">110.21 - Bác sỹ chuyên khoa Ngoại lồng ngực</option>
+                                <option value="110.22">110.22 - Bác sỹ chuyên khoa Ngoại tiêu hóa</option>
+                                <option value="110.23">110.23 - Bác sỹ chuyên khoa Ngoại thận - tiết niệu</option>
+                                <option value="110.24">110.24 - Bác sỹ chuyên khoa Chấn thương chỉnh hình</option>
+                                <option value="111">111 - Bác sỹ chuyên khoa Bỏng</option>
+                                <option value="112">112 - Bác sỹ chuyên khoa Ung bướu</option>
+                                <option value="113">113 - Bác sỹ chuyên khoa Phụ sản</option>
+                                <option value="114">114 - Bác sỹ chuyên khoa Mắt</option>
+                                <option value="115">115 - Bác sỹ chuyên khoa Tai mũi học</option>
+                                <option value="116">116 - Bác sỹ Răng hàm mặt</option>
+                                <option value="117">117 - Bác sỹ chuyên khoa Phục hồi chức năng</option>
+                                <option value="118">118 - Bác sỹ chuyên khoa Chẩn đoán hình ảnh</option>
+                                <option value="119">119 - Bác sỹ chuyên khoa Y học hạt nhân</option>
+                                <option value="120">120 - Bác sỹ chuyên khoa Nội soi chẩn đoán can thiệp</option>
+                                <option value="121">121 - Bác sỹ chuyên khoa Thăm dò chức năng</option>
+                                <option value="122">122 - Bác sỹ chuyên khoa Huyết học-truyền máu</option>
+                                <option value="123">123 - Bác sỹ chuyên khoa Hóa sinh</option>
+                                <option value="124">124 - Bác sỹ chuyên khoa Vi sinh</option>
+                                <option value="125">125 - Bác sỹ chuyên khoa Giải phẫu bệnh</option>
+                                <option value="126">126 - Bác sỹ chuyên khoa Vi phẫu</option>
+                                <option value="127">127 - Bác sỹ chuyên khoa Phẫu thuật nội soi</option>
+                                <option value="128">128 - Bác sỹ chuyên khoa Tạo hình thẩm mỹ</option>
+                                <option value="129">129 - Bác sỹ đa khoa</option>
+                                <option value="130">130 - Bác sỹ Y học dự phòng</option>
+                                <option value="131">131 - Bác sỹ y học cổ truyền không dùng thuốc</option>
+                                <option value="132">132 - Bác sỹ y khoa</option>
+                                <option value="133">133 - Bác sỹ chuyên khoa dinh dưỡng</option>
+                                <option value="134">134 - Bác sỹ tâm lý lâm sàng</option>
+                                <option value="201">201 - Y sỹ đa khoa</option>
+                                <option value="202">202 - Y sỹ Y học cổ truyền</option>
+                                <option value="301">301 - Điều dưỡng có trình độ từ đại học trở lên</option>
+                                <option value="302">302 - Điều dưỡng trình độ dưới đại học</option>
+                                <option value="303">303 - Điều dưỡng có văn bằng chuyên khoa Hồi sức cấp cứu</option>
+                                <option value="304">304 - Điều dưỡng có văn bằng chuyên khoa Nội khoa</option>
+                                <option value="305">305 - Điều dưỡng có văn bằng chuyên khoa Da liễu</option>
+                                <option value="306">306 - Điều dưỡng có văn bằng chuyên khoa Tâm thần</option>
+                                <option value="307">307 - Điều dưỡng có văn bằng chuyên khoa Nội tiết</option>
+                                <option value="308">308 - Điều dưỡng có văn bằng chuyên khoa Y học cổ truyền</option>
+                                <option value="309">309 - Điều dưỡng có văn bằng chuyên khoa Gây mê hồi sức</option>
+                                <option value="310">310 - Điều dưỡng có văn bằng chuyên khoa Ngoại</option>
+                                <option value="311">311 - Điều dưỡng có văn bằng chuyên khoa Bỏng</option>
+                                <option value="312">312 - Điều dưỡng có văn bằng chuyên khoa Ung bướu</option>
+                                <option value="313">313 - Điều dưỡng đại học chuyên ngành phụ sản, Điều dưỡng chuyên ngành hộ sinh, Điều dưỡng chuyên ngành sản phụ khoa</option>
+                                <option value="314">314 - Điều dưỡng có văn bằng chuyên khoa Mắt</option>
+                                <option value="315">315 - Điều dưỡng có văn bằng chuyên khoa Tai mũi học</option>
+                                <option value="316">316 - Điều dưỡng có văn bằng chuyên khoa Răng hàm mặt</option>
+                                <option value="317">317 - Điều dưỡng có văn bằng chuyên khoa Phục hồi chức năng</option>
+                                <option value="318">318 - Điều dưỡng có văn bằng chuyên khoa Thăm dò chức năng</option>
+                                <option value="319">319 - Điều dưỡng có văn bằng chuyên khoa Huyết học-truyền máu</option>
+                                <option value="401">401 - Hộ sinh trình độ từ đại học trở lên</option>
+                                <option value="402">402 - Hộ sinh trình độ dưới đại học</option>
+                                <option value="501">501 - Kỹ thuật y xét nghiệm Huyết học trình độ từ đại học trở lên</option>
+                                <option value="502">502 - Kỹ thuật y xét nghiệm Hóa sinh trình độ từ đại học trở lên</option>
+                                <option value="503">503 - Kỹ thuật y xét nghiệm Vi sinh trình độ từ đại học trở lên</option>
+                                <option value="504">504 - Kỹ thuật y xét nghiệm Giải phẫu bệnh trình độ từ đại học trở lên</option>
+                                <option value="505">505 - Kỹ thuật y xét nghiệm Huyết học trình độ dưới đại học</option>
+                                <option value="506">506 - Kỹ thuật y xét nghiệm Hóa sinh trình độ dưới đại học</option>
+                                <option value="507">507 - Kỹ thuật y xét nghiệm Vi sinh trình độ dưới đại học</option>
+                                <option value="508">508 - Kỹ thuật y xét nghiệm Giải phẫu bệnh trình độ dưới đại học</option>
+                                <option value="509">509 - Cử nhân hóa học, sinh học</option>
+                                <option value="510">510 - Dược sĩ trình độ đại học</option>
+                                <option value="511">511 - Kỹ thuật y hình ảnh y học trình độ từ đại học trở lên</option>
+                                <option value="512">512 - Kỹ thuật y hình ảnh y học trình độ dưới đại học</option>
+                                <option value="513">513 - Kỹ thuật y phục hình răng</option>
+                                <option value="514">514 - Kỹ thuật y khúc xạ nhãn khoa</option>
+                                <option value="515">515 - Kỹ thuật y phục hồi chức năng</option>
+                                <option value="601">601 - Cử nhân tâm lý lâm sàng</option>
+                                <option value="701">701 - Lương y</option>
+                                <option value="801">801 - Dược sỹ từ đại học trở lên</option>
+                                <option value="802">802 - Dược sỹ dưới đại học</option>
+                                <option value="901">901 - Kỹ sư vật lý y học</option>
+                                <option value="902">902 - Kỹ sư xạ trị</option>
+                                <option value="903">903 - Kỹ sư công nghệ sinh học</option>
+                                <option value="904">904 - Cử nhân công nghệ sinh học</option>
+                            </select>
                         </div>
                         <div>
                             <label class="block text-xs text-outline uppercase tracking-wider mb-1 font-bold">Phạm Vi CM Bổ Sung</label>
